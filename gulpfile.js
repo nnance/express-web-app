@@ -107,20 +107,21 @@ gulp.task('wiredep', function () {
         .pipe(gulp.dest('app'));
 });
 
-gulp.task('watch', ['connect', 'serve'], function () {
-    var server = $.livereload();
+gulp.task('watch', [/*'connect', 'serve'*/], function () {
+    // var server = $.livereload();
+    //
+    // // watch for changes
+    //
+    // gulp.watch([
+    //     'app/**/*.ejs',
+    //     '.tmp/styles/**/*.css',
+    //     'app/scripts/**/*.js',
+    //     'app/images/**/*'
+    // ]).on('change', function (file) {
+    //     server.changed(file.path);
+    // });
 
-    // watch for changes
-
-    gulp.watch([
-        'app/**/*.ejs',
-        '.tmp/styles/**/*.css',
-        'app/scripts/**/*.js',
-        'app/images/**/*'
-    ]).on('change', function (file) {
-        server.changed(file.path);
-    });
-
+    gulp.watch('app/**/*.ejs', ['html']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);
