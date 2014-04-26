@@ -27,7 +27,7 @@ gulp.task('html', ['styles', 'scripts'], function () {
     var jsFilter = $.filter('**/*.js');
     var cssFilter = $.filter('**/*.css');
 
-    return gulp.src('app/**/*.ejs')
+    return gulp.src('app/**/*.html')
         .pipe($.useref.assets())
         .pipe(jsFilter)
         .pipe($.uglify())
@@ -99,7 +99,7 @@ gulp.task('wiredep', function () {
         }))
         .pipe(gulp.dest('app/styles'));
 
-    gulp.src('app/**/*.ejs')
+    gulp.src('app/**/*.html')
         .pipe(wiredep({
             directory: 'app/bower_components',
             exclude: ['bootstrap-sass-official']
@@ -113,7 +113,7 @@ gulp.task('watch', [/*'connect', 'serve'*/], function () {
     // // watch for changes
     //
     // gulp.watch([
-    //     'app/**/*.ejs',
+    //     'app/**/*.html',
     //     '.tmp/styles/**/*.css',
     //     'app/scripts/**/*.js',
     //     'app/images/**/*'
@@ -121,7 +121,7 @@ gulp.task('watch', [/*'connect', 'serve'*/], function () {
     //     server.changed(file.path);
     // });
 
-    gulp.watch('app/**/*.ejs', ['html']);
+    gulp.watch('app/**/*.html', ['html']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch('app/scripts/**/*.js', ['scripts']);
     gulp.watch('app/images/**/*', ['images']);

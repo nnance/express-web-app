@@ -28,5 +28,5 @@ Important directories
 express app serves files.
 
 Important files
-- **.ejs** - template files that are rendered by the express/ejs template engine
+- **.html** - template files that are rendered by the express/ejs template engine
 - **gulpfile.js** - is the build file that uses the app directory and app/*.ejs files as the source

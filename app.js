@@ -2,7 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 
-app.use('/', express.static(__dirname + '/public'));
+app.engine('.html', require('ejs').__express);
 
 app.set('views', __dirname + '/public');
 
@@ -16,13 +16,13 @@ app.all('*', function(req, res, next){
 });
 
 app.get('/', function(req, res){
-  res.render('index.ejs');
+  res.render('index.html');
 });
 
 app.get('/post/:slug', function(req, res, next){
   res.locals.posts.forEach(function(post){
     if (req.params.slug === post.slug){
-      res.render('templates/post.ejs', { post: post });
+      res.render('templates/post.html', { post: post });
     }
   })
 });
@@ -31,9 +31,11 @@ app.get('/api/posts', function(req, res){
   res.json(res.locals.posts);
 });
 
+app.use('/', express.static(__dirname + '/public'));
+
 //The 404 Route (ALWAYS Keep this as the last route)
 app.get('*', function(req, res){
-  res.render('404.ejs');
+  res.render('404.html');
 });
 
 app.listen(3000);
